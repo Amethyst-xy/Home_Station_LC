@@ -20,7 +20,6 @@ const Full=React.forwardRef((props,ref)=>{
         <ReactFullpage ref={ref}
         scrollingSpeed ={700}
         render={({state,fullpageApi})=>{
-          console.log(fullpageApi)
           return (
             <ReactFullpage.Wrapper>
               <div className="section">

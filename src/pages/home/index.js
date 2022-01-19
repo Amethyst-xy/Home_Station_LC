@@ -20,22 +20,18 @@ export default function Home(){
       <img src={IMG_BED_URL+'ico.jpg'} alt='ico' style={{width:'200px'}}></img>
   );
 
-  const moveToPage=(page)=>{
-    fullRef.current.fullpageApi.moveTo(page);
-    //如果是第一屏，显示header
-    // if(page===1){
-    //   hRef.current.showHeader(true);
-    // }else{
-    //   hRef.current.showHeader(false);
-    // }
-  }
-
   //展示二维码
   const showIco=()=>{
       Modal.info({
       content,
       okText:'关闭'
       })
+
+      
+  }
+
+  const moveToPage=(page)=>{
+    fullRef.current.fullpageApi.moveTo(page);
   }
 
   return (
