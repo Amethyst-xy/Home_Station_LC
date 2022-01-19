@@ -14,4 +14,4 @@ jobs:
           host: ${{ secrets.SERVER_IP }}
           username: root
           key: ${{ secrets.SERVER_SSH_PRIV_KEY }}
-          script: docker-compose pull && docker-compose restart home-lc
+          script: docker-compose pull && docker-compose up -d home-lc
