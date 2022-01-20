@@ -24,6 +24,7 @@ import {reqQueryAvatar} from './api';
 
 function App() {
   const {userid,role}=storageUtils.getUser();
+  storageUtils.addStartTime(Date.now());
 
   const isTokenValid=()=>{
     const startTime=storageUtils.getStartTime();
