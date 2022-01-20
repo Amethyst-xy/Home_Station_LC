@@ -38,3 +38,7 @@ export const CTF_PAGE_SIZE=6;
 /*图床的图片*/
 export const IMG_BED_URL='https://chasing1874.oss-cn-chengdu.aliyuncs.com/';
 
+/*登录时的时间戳*/
+export const START_TIME='start_time';
+
+

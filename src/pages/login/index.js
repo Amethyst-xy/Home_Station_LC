@@ -46,6 +46,8 @@ export default function Login(props){
             if(res.code===1){
                 message.success('登录成功');
                 storageUtils.addUser(res.data);
+                //添加登录时的时间戳，用于处理token过期
+                storageUtils.addStartTime(Date.now());
                 props.history.replace('/');
             }else{
                 message.warning(res.msg);

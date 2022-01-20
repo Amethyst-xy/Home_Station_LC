@@ -1,5 +1,5 @@
 import store from 'store';
-import { USER_KEY } from "./constants";
+import { USER_KEY,START_TIME } from "./constants";
 
 const storageUtils={
     //添加用户
@@ -7,7 +7,11 @@ const storageUtils={
     //获取用户
     getUser:()=>store.get(USER_KEY)||{},
     //删除用户
-    removeUser:()=>store.remove(USER_KEY)
+    removeUser:()=>store.remove(USER_KEY),
+    //添加登录时间戳
+    addStartTime:time=>store.set(START_TIME,time),
+    //获取时间戳
+    getStartTime:()=>store.get(START_TIME)
 }
 
 // storageUtils.addUser({

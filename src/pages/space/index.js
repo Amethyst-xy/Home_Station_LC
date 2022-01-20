@@ -20,6 +20,7 @@ const IconFont = createFromIconfontCN({
 const { Footer } = Layout;
 
 function  Space(props){
+    let history=useHistory();
     const userid=props.location.state.userid;
     const [users,setUsers]=useState({});
     const [flag,setFlag]=useState([]);
@@ -29,14 +30,12 @@ function  Space(props){
     const [pages,setPages]=useState(1);
     const _role=storageUtils.getUser().role;
     
-    let history=useHistory();
-    
     const getUser=useCallback(async()=>{
         const result=await reqGetUserSpace(userid);
         if(result.code===1){
             setUsers(result.data);
         }else{
-            message.error(result.message);
+            message.error(result.msg);
         }
     },[userid]);
 

@@ -41,18 +41,8 @@ const Header = React.forwardRef((props,ref) => {
         const res = await reqQueryAvatar(userid);
         if (res.code === 1) {
             if(res.data){
-                const {role,avatar}=res.data;
+                const {avatar}=res.data;
                 setavatar(avatar);
-                //根据id获取role
-                const user_role=role;
-                //判断是否认证通过
-                if(storageUtils.getUser().role!==user_role){
-                    //通过，修改缓存
-                    const local_user=storageUtils.getUser();
-                    local_user.role=user_role;
-                    storageUtils.addUser(local_user);
-                    setuser(local_user);
-                }
             }
         }
     }, [userid]);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect,useCallback} from 'react';
 import {BrowserRouter,Route,Switch} from 'react-router-dom';
 import Login from './pages/login';
 import Home from './pages/home';
@@ -19,8 +19,46 @@ import HistoryNews from './pages/history_news';
 import IntroductionDoc from "./pages/docs";
 import Test from './pages/test';
 import 'animate.css';
+import storageUtils from './utils/storageUtils';
+import {reqQueryAvatar} from './api';
 
 function App() {
+  const {userid,role}=storageUtils.getUser();
+
+  const isTokenValid=()=>{
+    const startTime=storageUtils.getStartTime();
+    const now=Date.now();
+    if((now-startTime)/(1000*60*60*24)>=3) return false;
+    return true;
+  }
+
+  //若token过期
+  if(!isTokenValid()){
+    storageUtils.removeUser();
+    //无法跳转。。？
+  }
+
+  //获取角色
+  const getAvatarRole = useCallback(async () => {
+    const res = await reqQueryAvatar(userid);
+    if (res.code === 1) {
+        if(res.data){
+            const user_role=res.data.role;
+            //判断角色是否更新
+            if(role!==user_role){
+                //通过，修改缓存
+                const local_user=storageUtils.getUser();
+                local_user.role=user_role;
+                storageUtils.addUser(local_user);
+            }
+        }
+      }
+  }, [userid,role]);
+
+  useEffect(() => {
+    getAvatarRole();
+  }, [getAvatarRole])
+
   return (
     <BrowserRouter>
       <Switch>
