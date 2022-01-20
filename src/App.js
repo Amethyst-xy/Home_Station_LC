@@ -24,7 +24,6 @@ import {reqQueryAvatar} from './api';
 
 function App() {
   const {userid,role}=storageUtils.getUser();
-  storageUtils.addStartTime(Date.now());
 
   const isTokenValid=()=>{
     const startTime=storageUtils.getStartTime();
@@ -36,7 +35,7 @@ function App() {
   //若token过期
   if(!isTokenValid()){
     storageUtils.removeUser();
-    //无法跳转。。？
+    //跳转到login
   }
 
   //获取角色
