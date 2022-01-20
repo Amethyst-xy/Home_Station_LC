@@ -36,7 +36,7 @@ function App() {
   //若token过期
   if(!isTokenValid()){
     storageUtils.removeUser();
-    //无法跳转。。？
+    //跳转到login
   }
 
   //获取角色
